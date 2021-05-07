@@ -12,6 +12,8 @@ class MyWindow(QMainWindow):
         self.setWindowTitle("PyQt")
         self.setWindowIcon(QIcon('stock_01.png'))
 
+        btn = QPushButton("버튼1", self)
+
 
 app = QApplication(sys.argv)
 window = MyWindow()
