@@ -9,6 +9,8 @@ class MyWindow(QMainWindow):
         super().__init__()
         rect = [100, 200, 300, 400]
         self.setGeometry(*rect)
+        self.setWindowTitle("PyQt")
+        self.setWindowIcon(QIcon('stock_01.png'))
 
 
 app = QApplication(sys.argv)
