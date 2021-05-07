@@ -7,6 +7,8 @@ from PyQt5.QtGui import *
 class MyWindow(QMainWindow):
     def __init__(self):
         super().__init__()
+        rect = [100, 200, 300, 400]
+        self.setGeometry(*rect)
 
 
 app = QApplication(sys.argv)
