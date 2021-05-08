@@ -14,8 +14,13 @@ class MyWindow(QMainWindow):
 
         btn = QPushButton("버튼1", self)
         btn.move(10, 10)
+        btn.clicked.connect(self.btn_clicked)
+
         btn2 = QPushButton('버튼2', self)
         btn2.move(10, 40)
+
+    def btn_clicked(self):
+        print("버튼 클릭")
 
 
 app = QApplication(sys.argv)
