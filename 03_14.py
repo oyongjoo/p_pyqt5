@@ -10,12 +10,12 @@ class MyWindow(QMainWindow):
         rect = [100, 200, 300, 200]
         self.setGeometry(*rect)
         self.setWindowTitle("PyQt")
-        self.setWindowIcon(QIcon('stock_01.png'))
+        self.setWindowIcon(QIcon('stock_01.png'))  # PyQt5.QtGui 필요
 
         btn = QPushButton("버튼1", self)
         btn.move(10, 10)
-        btn = QPushButton('버튼2', self)
-        btn.move(10, 40)
+        btn2 = QPushButton('버튼2', self)
+        btn2.move(10, 40)
 
 
 app = QApplication(sys.argv)
