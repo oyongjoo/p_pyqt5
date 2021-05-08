@@ -10,6 +10,10 @@ class MyWindow(QMainWindow, form_class):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
+        self.pushButton.clicked.connect(self.btn_clicked)
+
+    def btn_clicked(self):
+        print("조회 버튼 클릭")
 
 
 app = QApplication(sys.argv)
