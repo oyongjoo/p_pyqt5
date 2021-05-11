@@ -9,7 +9,7 @@ bids = orderbook['bids']
 # print(bids)
 # print(asks)
 
-for bid in bids:
-    price = bid['price']
-    quantity = bid['quantity']
-    print(f"매수호가: {price}, 매수잔량: {quantity}")
+for ask in asks:
+    price = ask['price']
+    quantity = ask['quantity']
+    print(f"매도호가: {price}, 매도잔량: {quantity}")
