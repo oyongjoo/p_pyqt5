@@ -1,7 +1,8 @@
 import pybithumb
+import datetime
 
 orderbook = pybithumb.get_orderbook("BTC")
-print(orderbook)
+ms = int(orderbook['timestamp'])
 
-for k in orderbook:
-    print(k)
+dt = datetime.datetime.fromtimestamp(ms/1000)
+print(dt)
