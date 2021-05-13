@@ -9,6 +9,8 @@ tickers = ['BTC', 'ETH', 'BCH', 'ETC']
 form_class = uic.loadUiType("../bull.ui")[0]
 
 class Worker(QThread):
+    finished = pyqtSignal(dict)
+
     def run(self):
         while True:
             data = {}
@@ -16,8 +18,10 @@ class Worker(QThread):
             for ticker in tickers:
                 data[ticker] = self.get_market_infos(ticker)
 
+            self.finished.emit(data)
+
             print(data)
-            time.sleep(5)
+            self.msleep(500)
 
     def get_market_infos(self, ticker):
         try:
@@ -40,8 +44,24 @@ class MyWindow(QMainWindow, form_class):
         super().__init__()
         self.setupUi(self)
 
+        self.tableWidget.setRowCount(len(tickers))
         self.worker = Worker()
+        self.worker.finished.connect(self.update_table_widget)
         self.worker.start()
+
+    @pyqtSlot(dict)
+    def update_table_widget(self, data):
+        try:
+            for ticker, infos in data.items():
+                index = tickers.index(ticker)
+
+                self.tableWidget.setItem(index, 0, QTableWidgetItem(ticker))
+                self.tableWidget.setItem(index, 1, QTableWidgetItem(str(infos[0])))
+                self.tableWidget.setItem(index, 2, QTableWidgetItem(str(infos[1])))
+                self.tableWidget.setItem(index, 3, QTableWidgetItem(str(infos[2])))
+        except:
+            pass
+
 
 app = QApplication(sys.argv)
 window = MyWindow()
